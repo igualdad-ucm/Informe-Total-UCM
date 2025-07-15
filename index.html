@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Distribución de personas por sexo UCM</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #eee;
+      padding: 10px 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav button {
+      padding: 10px 20px;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background: #0055aa;
+    }
+    section {
+      display: none;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    section.active {
+      display: block;
+    }
+    img {
+      max-width: 90%;
+      max-height: 1000vh;
+      border-radius: 8px;
+      height: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    a button {
+      background-color: #0077cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Tablas de distribución del sexo de las personas en la UCM</h1>
+</header>
+
+<nav>
+  <button onclick="showTable('tabla1')">Distribución de personas en la UCM por sexo</button>
+  <button onclick="showTable('tabla2')">Distribución de personas en la UCM por colectivo</button>
+  <button onclick="showTable('tabla3')">Distribución de personas en la UCM por colectivo y sexo</button>
+  <button onclick="showTable('tabla4')">Concentración de personas en la UCM por colectivo y sexo</button>
+  <button onclick="showTable('tabla5')">Distribución de personas en la UCM por colectivo y facultad</button>
+  <button onclick="showTable('tabla6')">Distribución de personas en la UCM por colectivo, sexo y facultad</button>
+</nav>
+
+<section id="tabla1">
+  <a href="csv/TotalUCMPorSexo.csv" download>
+    <button>Descargar CSV</button>
+  </a>
+  <br><br>
+  <img src="Tablas/tabla1.png" alt="Tabla 1">
+</section>
+
+
+<section id="tabla2">
+  <a href="csv/TotalUCMPorColectivo.csv" download>
+    <button>Descargar CSV</button>
+  </a>
+  <br><br>
+  <img src="Tablas/tabla2.png" alt="Tabla 2">
+</section>
+
+<section id="tabla3">
+  <a href="csv/TotalUCMPorColectivoSexo.csv" download>
+    <button>Descargar CSV</button>
+  </a>
+  <br><br>
+  <img src="Tablas/tabla3.png" alt="Tabla 3">
+</section>
+
+<section id="tabla4">
+  <a href="csv/ConcentraciónUCMPorColectivo.csv" download>
+    <button>Descargar CSV</button>
+  </a>
+  <br><br>
+  <img src="Tablas/tabla4.png" alt="Tabla 5">
+</section>
+
+<section id="tabla5">
+  <a href="csv/TotalUCMPorColectivoFacultad.csv" download>
+    <button>Descargar CSV</button>
+  </a>
+  <br><br>
+  <img src="Tablas/tabla5_1.png" alt="Tabla 5">
+  <img src="Tablas/tabla5_2.png" alt="Tabla 5">
+  <img src="Tablas/tabla5_3.png" alt="Tabla 5">  
+</section>
+
+<section id="tabla6">
+  <a href="csv/TotalUCMPorColectivoFacultadSexo.csv" download>
+    <button>Descargar CSV</button>
+  </a>
+  <br><br>
+  <img src="Tablas/tabla6_1.png" alt="Tabla 6">
+  <img src="Tablas/tabla6_0.png" alt="Tabla 6">
+  <img src="Tablas/tabla6_2.png" alt="Tabla 6">
+  <img src="Tablas/tabla6_3.png" alt="Tabla 6">  
+</section>
+
+<script>
+  function showTable(id) {
+    // Ocultar todas las secciones
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    // Mostrar solo la seleccionada
+    document.getElementById(id).classList.add('active');
+    // Subir al top automáticamente
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
