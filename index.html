@@ -2,79 +2,177 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Distribución de personas por sexo UCM</title>
-  <style>
+  <title>Distribución de personas por idéntidad de género UCM</title>
+    <style>
     body {
-      font-family: sans-serif;
-      background: #f8f8f8;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(to bottom, #f9fafb, #f1f1f1);
       margin: 0;
+      color: #333;
     }
+
     header {
-      background: #003366;
+      background: #8b1538; /* provisional, se puede ajustar */
       color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    nav {
-      background: #eee;
-      padding: 10px 20px;
+
+    .header-container {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 0 auto;
       gap: 10px;
       flex-wrap: wrap;
-      justify-content: center;
     }
+
+    header h1 {
+      flex: 1;
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .logo {
+      height: 70px;
+      width: auto;
+    }
+
+    nav {
+      background: #f4f4f4;
+      padding: 15px 20px;
+      display: flex;
+      flex-direction: column; /* bloques verticales */
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Botones normales en fila */
+    .nav-buttons {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* Botones base */
     nav button {
-      padding: 10px 20px;
-      background: #003366;
+      background: #454545;
       color: white;
+      padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background 0.3s, transform 0.1s;
+      font-size: 0.95rem;
     }
+
     nav button:hover {
       background: #0055aa;
+      transform: scale(1.03);
     }
+
+    nav button.active {
+      background: #0077cc;
+      transform: scale(1.03);
+    }
+
+    /* Bloque de descarga global */
+    .nav-download {
+      text-align: center;
+      width: 100%;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
+    .download-all {
+      background: #8b1538;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.1s;
+    }
+
+    .download-all:hover {
+      background: #6a1028;
+      transform: scale(1.05);
+    }
+
+    /* SECCIONES */
     section {
-      display: none;
+      display: none; /* ocultas por defecto */
       padding: 40px 20px;
       text-align: center;
+      animation: fadeIn 0.4s ease-in-out;
     }
+
     section.active {
       display: block;
     }
-    img {
-      max-width: 90%;
-      max-height: 1000vh;
-      border-radius: 8px;
-      height: auto;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
+
+    img {
+      max-width: 95%;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
     a button {
       background-color: #0077cc;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 25px;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background 0.3s;
     }
+
     a button:hover {
       background-color: #005fa3;
     }
+
+    nav button.active {
+      background: #0077cc;
+    }
+
+
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Tablas de distribución del sexo de las personas en la UCM</h1>
-</header>
+  <header>
+    <div class="header-container">
+      <img src="EscudoUCMpng.png" alt="Logo UCM" class="logo">
+      <h1>Distribución por identidad de género del total UCM</h1>
+      <img src="LogoObservatoriopng.png" alt="Logo Observatorio" class="logo">
+    </div>
+  </header>
 
 <nav>
-  <button onclick="showTable('tabla1')">Distribución de personas en la UCM por sexo</button>
-  <button onclick="showTable('tabla2')">Distribución de personas en la UCM por colectivo</button>
-  <button onclick="showTable('tabla3')">Distribución de personas en la UCM por colectivo y sexo</button>
-  <button onclick="showTable('tabla4')">Concentración de personas en la UCM por colectivo y sexo</button>
-  <button onclick="showTable('tabla5')">Distribución de personas en la UCM por colectivo y facultad</button>
-  <button onclick="showTable('tabla6')">Distribución de personas en la UCM por colectivo, sexo y facultad</button>
+  <div class="nav-buttons">
+    <button onclick="showTable('tabla1')">Distribución de personas en la UCM por sexo</button>
+    <button onclick="showTable('tabla2')">Distribución de personas en la UCM por colectivo</button>
+    <button onclick="showTable('tabla3')">Distribución de personas en la UCM por colectivo y sexo</button>
+    <button onclick="showTable('tabla4')">Concentración de personas en la UCM por colectivo y sexo</button>
+    <button onclick="showTable('tabla5')">Distribución de personas en la UCM por colectivo y facultad</button>
+    <button onclick="showTable('tabla6')">Distribución de personas en la UCM por colectivo, sexo y facultad</button>
+  </div>
+  <div class="nav-download">
+    <a href="csv/TotalTablas.zip" download>
+      <button class="download-all">Descargar todas las tablas (ZIP)</button>
+    </a>
+  </div>
 </nav>
 
 <section id="tabla1">
@@ -133,11 +231,10 @@
 
 <script>
   function showTable(id) {
-    // Ocultar todas las secciones
     document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-    // Mostrar solo la seleccionada
     document.getElementById(id).classList.add('active');
-    // Subir al top automáticamente
+    document.querySelectorAll('.nav-buttons button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
     window.scrollTo(0, 0);
   }
 </script>
